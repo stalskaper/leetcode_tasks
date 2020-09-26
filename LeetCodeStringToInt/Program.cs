@@ -24,7 +24,8 @@ namespace LeetCodeStringToInt
 
     public static class Solution
     {
-        public static Dictionary<char, int> chfrToDigit = new Dictionary<char, int>()
+        public static char[] limitValue = new char[]{'2','1','4','7','4','8','3','6','4','8'};
+        public static Dictionary<char, int> charToDigit = new Dictionary<char, int>()
         {
             { '0',0 },
             {'1',1 },
@@ -38,20 +39,25 @@ namespace LeetCodeStringToInt
             { '9', 9}
         };
         public static int MyAtoi(string str)
-        {
-            int counter = 0;
-            int result = Int32.MaxValue;
-            char[] toProcess = str.Trim().Split(' ').FirstOrDefault(a=>a.All(c => Char.IsDigit(c) || c == '-')).Trim().ToCharArray();
+        {            
+            int result = 0;
+            List<char> toProcess = str.Trim().Split(' ').FirstOrDefault(a=>a.All(c => Char.IsDigit(c) || c == '-')).Trim().ToList<char>();
             bool sign = toProcess[0] == '-';
-            if ((toProcess.Length)<10)
+            if (sign)
+            {
+                toProcess.RemoveAt(0);
+            }
+            int counter = toProcess.Count();
+            if ((toProcess.Count)<10)
             {
                 do
                 {
-                    if (toProcess.Length>0)
-                        counter++;
-                } while (counter < toProcess.Length);
+                    result+=(int)Math.Pow(10, toProcess.Count() - counter)*(charToDigit[toProcess[counter - 1]]);
+                    counter--;
+                } while (counter >0);
+                return sign ? (-1)*result : result; 
             }
-            return 0;
+            return sign ? Int32.MinValue : Int32.MaxValue;
         }
 
     }
