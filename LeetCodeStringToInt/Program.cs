@@ -26,7 +26,7 @@ namespace LeetCodeStringToInt
     {
         public static int startPosition, finishPosition;
         public static char[] limitValue = new char[]{'2','1','4','7','4','8','3','6','4','8'};
-        public static char[] separators = new char[] { ' ', '.', ',', };
+        public static char[] signChars = new char[] { '+', '-' };
         public static Dictionary<char, int> charToDigit = new Dictionary<char, int>()
         {
             {'0', 0},
@@ -46,34 +46,40 @@ namespace LeetCodeStringToInt
             finishPosition = -1;
             int result = 0;
             int counter = 0;
-            bool sign = true;
+            sign sign = sign.unassigned;
             while (counter < str.Length)
             {
-                if (char.IsLetter(str[counter])) return 0;
+                if (signChars.Contains(str[counter]))
+                {
+                    if (sign == sign.unassigned)
+                    { 
+                        sign = (str[counter] == '+') ? sign.positive : sign.negative; 
+                    }
+                    else return 0;
+                }
+
                 if (startPosition == -1)
                 {
-                    if (charToDigit.ContainsKey(str[counter])) 
+                    if (str[counter] == '0') { counter++; continue; }
+                    if (charToDigit.ContainsKey(str[counter]))
                     {
                         startPosition = counter;
-                        if (counter > 0)
-                        {
-                            sign = str[counter - 1] != '-';
-                        }
+                        if (sign == sign.unassigned) sign = sign.positive;
                     }
                 }
-                else 
-                    if (!charToDigit.ContainsKey(str[counter]))
-                        { 
-                            finishPosition = counter - 1;
-                        break;
-                    }
+                else
+                if (!charToDigit.ContainsKey(str[counter]))
+                {
+                    finishPosition = counter - 1;
+                    break;
+                }
                 counter++;
             }
             if (startPosition == -1) return 0;
             if (finishPosition == -1) finishPosition = str.Length - 1;
             char[] parsebleArray = str.Substring(startPosition, finishPosition - startPosition + 1).ToCharArray();
             counter = parsebleArray.Length;
-            if ((parsebleArray.Length) < 10)
+            if (parsebleArray.Length < 10)
             {
                 do
                 {
@@ -81,9 +87,9 @@ namespace LeetCodeStringToInt
                     result += myPow(10, parsebleArray.Count() - counter) * (charToDigit[parsebleArray[counter - 1]]);
                     counter--;
                 } while (counter > 0);
-                return sign ? result : (-1) * result;
+                return sign == sign.positive ? result : (-1) * result;
             }
-            return sign ? Int32.MinValue : Int32.MaxValue;
+            else return sign== sign.positive ? parseMax(parsebleArray)*(-1) :  parseMax(parsebleArray);
         }
 
         public static Int32 myPow(int baseValue, int exponentValue)
@@ -99,5 +105,24 @@ namespace LeetCodeStringToInt
             return baseValue * myPow(baseValue, exponentValue - 1);
         }
 
+        public static int parseMax(char[] parsedString)
+        {
+            if (parsedString.Length > 10) return Int32.MinValue;
+            Int32 result = 0;
+            for (int i = 0; i < parsedString.Length; i++)
+            {
+                if (charToDigit[parsedString[i]] > charToDigit[limitValue[i]]) return Int32.MaxValue;
+                else
+                    result -= myPow(10, parsedString.Count() - i - 1) * (charToDigit[parsedString[i]]);
+            }
+            return result;
+        }
+
+        public enum sign
+        {
+            positive,
+            negative,
+            unassigned
+        }
     }
 }
