@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "8.LeetCodeStringToInt", "LeetCodeStringToInt\8.LeetCodeStringToInt.csproj", "{C1F79959-7C6D-4D63-8CC7-5B1B75A37C28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "50.LeetCodePowXN", "50.LeetCodePowXN\50.LeetCodePowXN.csproj", "{64EE8E94-957F-4DBC-9D6A-74F34E9B2F8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.184.Department_Highest_salary", "Database.184.Department_Highest_salary\Database.184.Department_Highest_salary.csproj", "{495451EF-0487-42D3-816F-82C36CAD9715}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C1F79959-7C6D-4D63-8CC7-5B1B75A37C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1F79959-7C6D-4D63-8CC7-5B1B75A37C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1F79959-7C6D-4D63-8CC7-5B1B75A37C28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64EE8E94-957F-4DBC-9D6A-74F34E9B2F8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64EE8E94-957F-4DBC-9D6A-74F34E9B2F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64EE8E94-957F-4DBC-9D6A-74F34E9B2F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64EE8E94-957F-4DBC-9D6A-74F34E9B2F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{495451EF-0487-42D3-816F-82C36CAD9715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{495451EF-0487-42D3-816F-82C36CAD9715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{495451EF-0487-42D3-816F-82C36CAD9715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{495451EF-0487-42D3-816F-82C36CAD9715}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

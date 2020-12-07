@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Database._184.Department_Highest_salary</RootNamespace>
+  </PropertyGroup>
+
+</Project>
